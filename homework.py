@@ -44,6 +44,17 @@ class Student:
             a =(f'средняя оценка за домашнюю работу {self.name}  {self.surname} {res} чем у {student1.name} {student1.surname}')
             return a
 
+    def __lt__(self, other: 'student'):   #сравнение оценок студентоа < >
+        a = self.average_grade()
+        b = other.average_grade()
+        return a < b
+
+    def __eq__(self, other: 'student'):   #сравнение оценок студентоа ==
+        a = self.average_grade()
+        b = other.average_grade()
+        return a == b
+
+
 
 def aver_for_course(student_list, course):      #cредняя оценка студентов за ДЗ в рамках курса
     a = 0
@@ -56,6 +67,8 @@ def aver_for_course(student_list, course):      #cредняя оценка ст
     result = (a/len_all)
 
     return result
+
+
 
 
 
@@ -109,6 +122,18 @@ class Lecturer(Mentor):
             a = f'больше'if self.average_grade() > lecturer2.average_grade() else f'меньше'
             res=f'средняя оценка за лекции {self.name}  {self.surname} {a} чем у {lecturer2.name} {lecturer2.surname}'
             return res
+
+    def __lt__(self, other: 'lecturer'):   #сравнение оценок лекторов < >
+        a = self.average_grade()
+        b = other.average_grade()
+        return a < b
+
+    def __eq__(self, other: 'lecturer'):   #сравнение оценок лекторов ==
+        a = self.average_grade()
+        b = other.average_grade()
+        return a == b
+
+
 
 def aver_for_course_1(lecturer_list, course):  # cредняя оценка лекторов за лекции в рамках курса
     a = 0
@@ -171,3 +196,12 @@ print(best_student.grades)  #  оценки студента
 print(best_student.grades.get('Python','нет оценок за данный курс'))    # оценки студента за курс
 print(aver_for_course([bad_student, best_student],'Python'))    # cредняя оценка списка студентов за ДЗ в рамках курса
 print(aver_for_course_1([good_lecturer, good_lecturer1 ],'Python')) #cредняя оценка списка лекторов за лекции в рамках курса
+
+
+print(good_lecturer == good_lecturer1)  #сравнение средней оценки лекторов (магический метод)
+print(good_lecturer < good_lecturer1)   #сравнение средней оценки лекторов (магический метод)
+
+print(bad_student < best_student)   #сравнение средней оценки студентов (магический метод)
+print(bad_student == best_student)  #сравнение средней оценки студентов (магический метод)
+
+
